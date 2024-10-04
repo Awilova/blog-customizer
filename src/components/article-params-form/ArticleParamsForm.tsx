@@ -4,7 +4,7 @@ import { Button } from 'src/ui/button';
 import clsx from 'clsx';
 import styles from './ArticleParamsForm.module.scss';
 
-import { FormEvent, useState, useRef } from 'react';
+import { FormEvent, useState, useRef, useEffect } from 'react';
 import { Select } from 'src/ui/select';
 import { RadioGroup } from 'src/ui/radio-group';
 import { Separator } from 'src/ui/separator';
@@ -55,10 +55,25 @@ export const ArticleParamsForm = (props: TSettingsPageProps) => {
 	const ref = useRef<HTMLDivElement | null>(null);
 
 	function onClickSidebar() {
-		if (!isOpenSidebar) {
-			setIsOpenSidebar(!isOpenSidebar);
-		}
+		setIsOpenSidebar(!isOpenSidebar);
 	}
+
+	useEffect(() => {
+		if (!isOpenSidebar) return;
+		const handleOutsideClick = (event: MouseEvent) => {
+			if (
+				isOpenSidebar &&
+				ref.current &&
+				!ref.current.contains(event.target as Node)
+			) {
+				setIsOpenSidebar(false);
+			}
+		};
+		document.addEventListener('mousedown', handleOutsideClick);
+		return () => {
+			document.removeEventListener('mousedown', handleOutsideClick);
+		};
+	}, [isOpenSidebar, setAddedFormSettings]);
 
 	return (
 		<>
@@ -72,7 +87,7 @@ export const ArticleParamsForm = (props: TSettingsPageProps) => {
 					className={styles.form}
 					onSubmit={handleSubmitButton}
 					onReset={handleResetButton}>
-					<Text weight={800} size={31} uppercase>
+					<Text weight={800} size={31} uppercase as='h2'>
 						{'задайте параметры'}
 					</Text>
 					<Select
