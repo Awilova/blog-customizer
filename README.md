@@ -1,6 +1,7 @@
 # Blog customizer
 ### Описание
-Интерактивный проект позволяющий настраивать внешний вид страницы на React
+Интерактивный проект позволяющий настраивать внешний вид страницы на React  
+
 [Макет проекта](https://www.figma.com/file/FEeiiGLOsE7ktXbPpBxYoD/Custom-dropdown?type=design&node-id=0%3A1&mode=design&t=eXRJnWC6Xsuw0qR4-1)
 ### Особенности
 - наименование блоков, элементов, а также файловая структура соответствуют методологии БЭМ;
@@ -13,8 +14,8 @@
 ### Установка и запуск
 Клонируйте репозиторий и перейдите в его директорию:
 ```
-git clone git@github.com:Awilova/mesto-project-ff.git
-cd mesto-project-ff
+git clone git@github.com:Awilova/blog-customizer.git
+cd blog-customizer
 ```
 Установите зависимости:
 ```
